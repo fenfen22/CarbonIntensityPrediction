@@ -254,7 +254,7 @@ class Forecasting():
         print("loading model..")
         path = os.path.join(self.checkpoints, self.model_id)
         best_model_path = path + '/' + 'checkpoint.pth'
-        # self.model.load_state_dict(torch.load(best_model_path))   ### if GPU is avaliable
+        # self.model.load_state_dict(torch.load(best_model_path))                                     ### if GPU is avaliable
         self.model.load_state_dict(torch.load(best_model_path, map_location=torch.device('cpu')))     #### if only CPU is avaliable
         return self.model
 
@@ -316,10 +316,10 @@ class Forecasting():
 
         preds = np.array(preds)
         reals = np.array(reals)
-        print("test shape:", preds.shape, reals.shape)   ### 14401(len(test_loader)), batch_size(1),n_past
+        print("test shape:", preds.shape, reals.shape)   ### 12202, 1, 24,1 
         preds = preds.reshape(-1, preds.shape[-2], preds.shape[-1])
         reals = reals.reshape(-1, reals.shape[-2], reals.shape[-1])   
-        print("test shape:", preds.shape, reals.shape) ### 1,24,1
+        print("test shape:", preds.shape, reals.shape)   ### 12202,24,1
         
         
         mae, mse, rmse, r2 = eva.metric(preds,reals)

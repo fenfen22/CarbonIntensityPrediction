@@ -21,9 +21,8 @@ F = Forecasting(
     learning_rate=0.0001,
     n_predict=1
 )
-# model.test(test=1)  # Load the pre-trained model
-model = F.load_model()
-F.ts_cv(4)
+model = F.load_model()  ##Load the pre-trained model
+F.ts_cv(4)              ## setup the scaler
 
 app = FastAPI()
 
@@ -41,8 +40,7 @@ async def predict(file: UploadFile = File(...)):
     # Preprocess the data
     scaler = F.scaler
     x = scaler.transform(df.values)
-    # x, _ = split_sequence(df_scaled, model.n_past, model.n_future)
-    x=x.reshape(1,x.shape[0],x.shape[1])
+    x=x.reshape(1,x.shape[0],x.shape[1])   ## reshape x
     x = torch.tensor(x).float().to(F.device)
     
     model.eval()
