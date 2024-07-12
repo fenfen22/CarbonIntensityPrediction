@@ -1,20 +1,9 @@
-
-# import numpy as np
-# import os
-# import time
-
-# import pandas as pd
-
 import torch
 import torch as T
 import torch.optim as optim
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 import torch.nn.functional as F
-
-
-
-# device = 'cuda:0' if torch.cuda.is_available()  else 'cpu' 
 
 
 class MODEL(nn.Module):
@@ -32,13 +21,10 @@ class MODEL(nn.Module):
             nn.Conv1d(in_channels=self.input_size, out_channels=64, kernel_size=2),
             nn.Dropout(0.1),
             nn.ReLU(),
-            # nn.MaxPool1d(2)
 
             nn.Conv1d(in_channels=64, out_channels=128, kernel_size=2),
             nn.Dropout(0.1),
             nn.ReLU(),
-            # # nn.Conv1d(in_channels=64, out_channels=128, kernel_size=2),
-            # # nn.ReLU(),
             nn.MaxPool1d(2)
         )
             
