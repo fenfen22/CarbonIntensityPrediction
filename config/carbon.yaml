@@ -1,0 +1,13 @@
+model:
+  name: ConvLSTM
+  id: ConvLSTM_carbon
+data:
+  path: "dk_dk2_clean.csv"
+params:
+  epochs: 50
+  learning_rate: 0.0001
+  batch_size: 64
+  n_feature: 50
+  n_future: 24
+  n_past: 168
+  n_predict: 1
